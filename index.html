@@ -11,7 +11,12 @@
     <audio id="music" autoplay loop muted>
         <source src="https://gnartiel.github.io/happy-new-year/hanabi.mp3" type="audio/mp3">
     </audio>
-    <script src="script.js"></script>
-
+    <script>
+        // Bỏ mute khi người dùng nhấp chuột
+        document.body.addEventListener('click', () => {
+            const music = document.getElementById('music');
+            music.muted = false;
+        });
+    </script>
 </body>
 </html>
