@@ -12,13 +12,14 @@
     <audio id="music" autoplay loop muted>
         <source src="https://gnartiel.github.io/happy-new-year/hanabi.mp3" type="audio/mp3">
     </audio>
+    <button id="play-button">Bật Nhạc</button>
     <script>
-        // Bỏ mute khi người dùng nhấp chuột
-        document.body.addEventListener('click', () => {
+        document.getElementById('play-button').addEventListener('click', () => {
             const music = document.getElementById('music');
-            music.muted = false; // Bỏ mute khi người dùng nhấp chuột vào trang
-            music.play();
+            music.muted = false; // Bỏ mute
+            music.play(); // Phát nhạc
         });
     </script>
+
 </body>
 </html>
