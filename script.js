@@ -2,6 +2,13 @@ const canvas = document.getElementById('fireworks');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+const audioElement = document.getElementById('music');
+document.addEventListener("click", function(event) {
+    if (event.target) {                
+        audioElement.muted = false;
+        audioElement.play();
+    }
+});
 
 class Firework {
   constructor(x, y) {
@@ -43,13 +50,7 @@ function animate() {
   });
   requestAnimationFrame(animate);
 }
-const audioElement = document.getElementById('music');
-document.addEventListener("click", function(event) {
-    if (event.target) {                
-        audioElement.muted = false;
-        audioElement.play();
-    }
-});
+
 
 canvas.addEventListener('click', (e) => {
   addFirework(e.clientX, e.clientY);
