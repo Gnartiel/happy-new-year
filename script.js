@@ -43,9 +43,12 @@ function animate() {
   });
   requestAnimationFrame(animate);
 }
-document.body.addEventListener('click', () => {
-    const music = document.getElementById('music');
-    music.muted = false; // Bỏ mute khi người dùng nhấp chuột vào trang
+const audioElement = document.getElementById('music');
+document.addEventListener("click", function(event) {
+    if (event.target) {                
+        audioElement.muted = false;
+        audioElement.play();
+    }
 });
 
 canvas.addEventListener('click', (e) => {
