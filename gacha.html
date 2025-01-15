@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gacha Video</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Đảm bảo không có thanh cuộn */
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Video sẽ phủ đầy màn hình mà không bị méo */
+        }
+    </style>
+</head>
+<body>
+    <video id="gacha-video" autoplay>
+        <source src="https://gnartiel.github.io/happy-new-year/gacha_fix.mp4" type="video/mp4">
+    </video>
+    <script>
+        // Lắng nghe sự kiện khi video kết thúc
+        const video = document.getElementById('gacha-video');
+        video.addEventListener('ended', function () {
+            // Chuyển đến trang result.html
+            window.location.href = 'result.html';
+        });
+    </script>
+</body>
+</html>
