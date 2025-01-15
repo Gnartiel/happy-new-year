@@ -1,59 +1,58 @@
 /* body {
     margin: 0;
     overflow: hidden;
-    background: rgb(223, 7, 7);
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
-  }
-  
-  #message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3em;
-    animation: fadeInOut 3s infinite;
-  }
-  
-  @keyframes fadeInOut {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-  }
-  
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-  }
-   */
-
-/* styles.css */
-
-/* Mặc định cho màn hình lớn (PC, laptop) */
-body {
-    margin: 0;
-    overflow: hidden;
     background: rgb(248, 4, 4);
     font-family: Arial, sans-serif;
     color: white;
     text-align: center;
-  }
+    align-items: center;
+  } */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Chiều cao toàn màn hình */
+    background-color: #17142f; /* Màu nền (tuỳ chỉnh theo ý thích) */
+    color: #fc2727; /* Màu chữ */
+    font-family: Arial, sans-serif;
+}
   
-  canvas {
+canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-  }
-  
-  /* Thiết lập cho màn hình nhỏ (điện thoại) */
-  @media (max-width: 768px) {
-    body {
-      font-size: 1.5em;
-    }
-  }
-  
+}
+
+/* Thiết lập cho màn hình nhỏ (điện thoại) */
+@media (max-width: 768px) {
+body {
+    font-size: 1.5em;
+}
+}
+
+
+#message {
+    text-align: center; /* Căn giữa nội dung bên trong #message */
+}
+
+#fortune-button {
+    margin-top: 20px; /* Khoảng cách giữa nút và dòng chữ */
+    padding: 10px 20px; /* Kích thước nút */
+    font-size: 1rem; /* Kích thước chữ */
+    color: #fff; /* Màu chữ */
+    background-color: #ff5733; /* Màu nền */
+    border: none; /* Loại bỏ đường viền */
+    border-radius: 5px; /* Bo tròn góc */
+    cursor: pointer; /* Con trỏ chỉ tay khi hover */
+    transition: background-color 0.3s ease; /* Hiệu ứng khi hover */
+    display: inline-block; /* Đảm bảo nút nằm gọn trong dòng */
+}
+
+#fortune-button:hover {
+    background-color: #c13d27; /* Màu nền khi hover */
+}
+
