@@ -10,11 +10,15 @@
 <body>
     <div id="message">
         <h1>🎆 Happy New Year! 🎆</h1>
+        <a id="fortune-button" href="https://gnartiel.github.io/happy-new-year/gacha.html">Gieo quẻ</a>
     </div>
-    <audio id="music" autoplay loop muted>
-        <source src="https://gnartiel.github.io/happy-new-year/hanabi.mp3" type="audio/mp3">
-    </audio>
 
-    <script src="script.js"></script>
+    <script>
+        const audio = new Audio('https://gnartiel.github.io/happy-new-year/hanabi.mp3');
+        audio.loop = true;
+        audio.play().catch(err => {
+            console.warn('Không thể phát nhạc tự động:', err);
+        });
+    </script>
 </body>
 </html>
