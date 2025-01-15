@@ -6,6 +6,19 @@
     <title>Happy New Year</title>
     <link rel="shortcut icon" href="https://gnartiel.github.io/happy-new-year/favicon.ico">
     <link rel="stylesheet" href="https://gnartiel.github.io/happy-new-year/styles.css">
+    <style>
+        /* CSS cho biểu tượng âm nhạc */
+        #music-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 30px; /* Kích thước biểu tượng */
+            color: #333; /* Màu sắc biểu tượng */
+        }
+    </style>
+    <!-- Thêm liên kết đến Font Awesome để sử dụng biểu tượng âm nhạc -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div id="message">
@@ -13,11 +26,36 @@
         <a id="fortune-button" href="https://gnartiel.github.io/happy-new-year/gacha.html">Gieo quẻ</a>
     </div>
 
+    <!-- Biểu tượng âm nhạc -->
+    <i id="music-icon" class="fas fa-music"></i>
+
     <script>
+        // Tạo đối tượng Audio để phát bài hanabi
         const audio = new Audio('https://gnartiel.github.io/happy-new-year/hanabi.mp3');
-        audio.loop = true;
-        audio.play().catch(err => {
-            console.warn('Không thể phát nhạc tự động:', err);
+        audio.loop = true; // Để âm thanh lặp lại
+        let isPlaying = false; // Trạng thái âm thanh
+
+        // Thêm sự kiện click vào nút "Gieo quẻ"
+        const fortuneButton = document.getElementById('fortune-button');
+        fortuneButton.addEventListener('click', function() {
+            audio.play().catch(err => {
+                console.warn('Không thể phát nhạc:', err);
+            });
+        });
+
+        // Thêm sự kiện click vào biểu tượng âm nhạc
+        const musicIcon = document.getElementById('music-icon');
+        musicIcon.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause(); // Tạm dừng âm thanh
+                musicIcon.style.color = '#333'; // Đổi màu biểu tượng khi tạm dừng
+            } else {
+                audio.play().catch(err => {
+                    console.warn('Không thể phát nhạc:', err);
+                });
+                musicIcon.style.color = '#ff0000'; // Đổi màu biểu tượng khi đang phát
+            }
+            isPlaying = !isPlaying; // Đổi trạng thái âm thanh
         });
     </script>
 </body>
