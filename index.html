@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy New Year</title>
     <link rel="shortcut icon" href="https://gnartiel.github.io/happy-new-year/favicon.ico">
-    <link rel="stylesheet" href="https://gnartiel.github.io/happy-new-year/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* CSS cho biểu tượng âm nhạc */
         #music-icon {
@@ -30,7 +30,7 @@
             margin: 0 auto; /* Căn giữa nút */
             padding: 10px 20px; /* Khoảng cách bên trong nút */
             font-size: 2.5vw; /* Kích thước chữ nút sẽ thu phóng */
-            background-color: #4CAF50; /* Màu nền nút */
+            background-color: #5dad60; /* Màu nền nút */
             color: white; /* Màu chữ nút */
             text-decoration: none; /* Không gạch chân */
             border-radius: 5px; /* Bo góc nút */
@@ -39,46 +39,80 @@
         #fortune-button:hover {
             background-color: #45a049; /* Đổi màu khi hover */
         }
+
+        /* CSS cho thanh chọn (dropdown) */
+        #number-select {
+            display: block;
+            margin: 20px auto; /* Căn giữa thanh chọn */
+            padding: 10px; /* Khoảng cách bên trong */
+            font-size: 1.5vw; /* Kích thước chữ thanh chọn */
+            background-color: #ffffff; /* Màu nền */
+            color: #333; /* Màu chữ */
+            border: 2px solid #5dad60; /* Đường viền */
+            border-radius: 5px; /* Bo góc cho thanh chọn */
+            cursor: pointer; /* Con trỏ chuột khi hover */
+        }
+
+        #number-select:hover {
+            border-color: #45a049; /* Đổi màu viền khi hover */
+        }
+
+        /* CSS cho các tùy chọn trong thanh chọn */
+        #number-select option {
+            background-color: #ffffff; /* Màu nền cho tùy chọn */
+            color: #333; /* Màu chữ cho tùy chọn */
+        }
+
+        #number-select option:hover {
+            background-color: #f0f0f0; /* Màu nền khi hover trên tùy chọn */
+        }
     </style>
-    <!-- Thêm liên kết đến Font Awesome để sử dụng biểu tượng âm nhạc -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div id="message">
         <h1>🎆 Happy New Year! 🎆</h1>
-        <a id="fortune-button" href="https://gnartiel.github.io/happy-new-year/gacha.html">Gieo quẻ</a>
+        <select id="number-select">
+            <option value="" disabled selected>Chọn một số từ 1 đến 32</option>
+            <script>
+                for (let i = 1; i <= 32; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                }
+            </script>
+        </select>
+        <a id="fortune-button" href="#">Gieo quẻ</a>
     </div>
 
-    <!-- Biểu tượng âm nhạc -->
     <i id="music-icon" class="fas fa-music"></i>
 
     <script>
-        // Tạo đối tượng Audio để phát bài hanabi
         const audio = new Audio('https://gnartiel.github.io/happy-new-year/hanabi.mp3');
-        audio.loop = true; // Để âm thanh lặp lại
-        let isPlaying = false; // Trạng thái âm thanh
+        audio.loop = true;
+        let isPlaying = false;
 
-        // Thêm sự kiện click vào nút "Gieo quẻ"
         const fortuneButton = document.getElementById('fortune-button');
-        fortuneButton.addEventListener('click', function() {
-            audio.play().catch(err => {
-                console.warn('Không thể phát nhạc:', err);
-            });
+        fortuneButton.addEventListener('click', function(event) {
+            const selectedNumber = document.getElementById('number-select').value;
+            if (!selectedNumber) {
+                alert("Vui lòng chọn một số từ 1 đến 32.");
+                event.preventDefault();
+            } else {
+                window.location.href = `gacha.html?number=${selectedNumber}`;
+            }
         });
 
-        // Thêm sự kiện click vào biểu tượng âm nhạc
         const musicIcon = document.getElementById('music-icon');
         musicIcon.addEventListener('click', function() {
             if (isPlaying) {
-                audio.pause(); // Tạm dừng âm thanh
-                musicIcon.style.color = '#333'; // Đổi màu biểu tượng khi tạm dừng
+                audio.pause();
+                musicIcon.style.color = '#333';
             } else {
                 audio.play().catch(err => {
                     console.warn('Không thể phát nhạc:', err);
                 });
-                musicIcon.style.color = '#ff0000'; // Đổi màu biểu tượng khi đang phát
+                musicIcon.style.color = '#ff0000';
             }
-            isPlaying = !isPlaying; // Đổi trạng thái âm thanh
+            isPlaying = !isPlaying;
         });
     </script>
 </body>
