@@ -5,26 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greeting</title>
+    <link rel="stylesheet" href="https://gnartiel.github.io/happy-new-year/styles.css">
     <style>
         body {
-            background-color: #5dad60;
-            color: white;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f0f0f0;
+            padding: 20px;
             margin: 0;
         }
 
         h1 {
-            font-size: 3em;
+            text-align: center;
+        }
+
+        #content {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to the Greeting Page! 🎉</h1>
+    <h1>Nội dung gửi gắm</h1>
+    <div id="content"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+
+        if (code === 'snake') {
+            fetch('./data/snake.txt')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('content').innerText = data;
+                })
+                .catch(error => {
+                    document.getElementById('content').innerText = 'Không thể tải nội dung.';
+                    console.error('Error fetching the file:', error);
+                });
+        } else {
+            document.getElementById('content').innerText = 'Mã không hợp lệ.';
+        }
+    </script>
 </body>
 
 </html>
