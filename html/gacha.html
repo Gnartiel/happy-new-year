@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://gnartiel.github.io/happy-new-year/favicon.ico">
+    <link rel="shortcut icon" href="https://gnartiel.github.io/happy-new-year/image/favicon.ico">
     <title>Gacha Video</title>
     <style>
         body, html {
@@ -26,7 +26,7 @@
 </head>
 <body>
     <video id="gacha-video" autoplay>
-        <source src="https://gnartiel.github.io/happy-new-year/gacha_fix.mp4" type="video/mp4">
+        <source src="https://gnartiel.github.io/happy-new-year/music/gacha_fix.mp4" type="video/mp4">
     </video>
     <script>
         const video = document.getElementById('gacha-video');
@@ -37,7 +37,7 @@
 
         video.addEventListener('ended', function () {
             // Chuyển đến trang result.html và truyền số đã chọn
-            window.location.href = `result.html?number=${selectedNumber}`;
+            window.location.href = `https://gnartiel.github.io/happy-new-year/html/result.html?number=${selectedNumber}`;
         });
     </script>
 </body>
