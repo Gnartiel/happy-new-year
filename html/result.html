@@ -70,7 +70,7 @@
                     <div>${lines.slice(2).join('<br>')}</div>
                 `;
 
-                document.getElementById('content').innerHTML = contentHtml; // Sử dụng innerHTML để hiển thị HTML
+                document.getElementById('content').innerHTML = contentHtml; 
             } catch (error) {
                 document.getElementById('content').innerText = error.message;
             }
