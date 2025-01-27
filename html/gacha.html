@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://gnartiel.github.io/happy-new-year/favicon.ico">
+    <title>Gacha Video</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <video id="gacha-video" autoplay>
+        <source src="https://gnartiel.github.io/happy-new-year/gacha_fix.mp4" type="video/mp4">
+    </video>
+    <script>
+        const video = document.getElementById('gacha-video');
+
+        // Lấy số đã chọn từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedNumber = urlParams.get('number');
+
+        video.addEventListener('ended', function () {
+            // Chuyển đến trang result.html và truyền số đã chọn
+            window.location.href = `result.html?number=${selectedNumber}`;
+        });
+    </script>
+</body>
+</html>

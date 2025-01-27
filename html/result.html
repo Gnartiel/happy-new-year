@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://gnartiel.github.io/happy-new-year/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ec0909;
+            font-family: Arial, sans-serif;
+            color: #faf500;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        #content {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            border: 5px solid gold;
+            background-color: rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .large-text {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kết quả gieo quẻ của bạn!</h1>
+    <div id="content"></div>
+    <script>
+        const audio = new Audio('https://gnartiel.github.io/happy-new-year/gieo_que.mp3');
+        audio.play().catch(err => {
+            console.warn('Không thể phát nhạc tự động:', err);
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedNumber = urlParams.get('number'); // Lấy số đã chọn
+
+        const fileName = `https://gnartiel.github.io/happy-new-year/data/${selectedNumber}.txt`; // Đường dẫn tới tệp tin
+
+        async function readFileContent(filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error('Không thể tìm thấy tệp tin');
+                }
+                const text = await response.text();
+                const lines = text.split('\n');
+
+                const contentHtml = `
+                    <div class="large-text">${lines[0]}</div>
+                    <div class="large-text">${lines[1]}</div>
+                    <div>${lines.slice(2).join('<br>')}</div>
+                `;
+
+                document.getElementById('content').innerHTML = contentHtml; // Sử dụng innerHTML để hiển thị HTML
+            } catch (error) {
+                document.getElementById('content').innerText = error.message;
+            }
+        }
+
+        readFileContent(fileName);
+    </script>
+</body>
+</html>
