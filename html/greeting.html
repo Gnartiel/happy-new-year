@@ -5,56 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greeting</title>
-    <link rel="stylesheet" href="https://gnartiel.github.io/happy-new-year/styles.css">
+    <link rel="shortcut icon" href="https://gnartiel.github.io/happy-new-year/image/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap" rel="stylesheet"> <!-- Thêm font chữ -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Dancing Script', cursive; /* Sử dụng font chữ viết bằng bút máy */
+            background-image: url('https://gnartiel.github.io/happy-new-year/image/letter.jpg'); /* Thêm hình nền */
+            background-size: cover; /* Đảm bảo hình nền phủ đầy màn hình */
+            background-position: center; /* Căn giữa hình nền */
             padding: 20px;
             margin: 0;
-        }
-
-        h1 {
-            text-align: center;
         }
 
         #content {
             max-width: 600px;
             margin: 0 auto;
-            background-color: white;
-            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Thêm màu nền trắng trong suốt để nội dung dễ đọc hơn */
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+
+        .letter-header {
+            font-size: 2em; /* Độ lớn tiêu đề */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .letter-body {
+            font-size: 1.5em; /* Độ lớn nội dung bức thư */
+            margin: 20px 0;
+        }
+
+        .signature {
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+        }
+
+        img {
+            max-width: 100%; /* Đảm bảo hình ảnh không vượt quá kích thước phần tử chứa */
+            height: auto; /* Duy trì tỉ lệ khung hình */
+            border-radius: 8px; /* Bo góc hình ảnh */
         }
     </style>
 </head>
 
 <body>
-    <h1>Nội dung gửi gắm</h1>
-    <div id="content"></div>
+    <div id="content">
+    </div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
+        const selectedNumber = urlParams.get('code');
 
-        if (code === 'snake') {
-            fetch('./data/snake.txt')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('content').innerText = data;
-                })
-                .catch(error => {
-                    document.getElementById('content').innerText = 'Không thể tải nội dung.';
-                    console.error('Error fetching the file:', error);
-                });
-        } else {
-            document.getElementById('content').innerText = 'Mã không hợp lệ.';
+        const fileName = `https://gnartiel.github.io/happy-new-year/data/${selectedNumber}.txt`; // Đường dẫn tới tệp tin
+
+        async function readFileContent(filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error('Không thể tìm thấy tệp tin');
+                }
+                const text = await response.text();
+                const lines = text.split('\n');
+
+                const contentHtml = `
+                    <div class="letter-body">
+                        <div>${lines[0]}</div>
+                        <div>${lines[1]}</div>
+                        <div>${lines.slice(2).join('<br>')}</div>
+                    </div>
+                    <div class="signature">Trang</div>
+                `;
+
+                document.getElementById('content').innerHTML += contentHtml; // Sử dụng innerHTML để hiển thị HTML
+            } catch (error) {
+                document.getElementById('content').innerText = error.message;
+            }
         }
+
+        readFileContent(fileName);
     </script>
 </body>
 
