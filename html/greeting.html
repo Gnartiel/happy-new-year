@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap" rel="stylesheet"> <!-- Thêm font chữ -->
     <style>
         body {
-            font-family: 'Dancing Script', cursive; /* Sử dụng font chữ viết bằng bút máy */
-            background-image: url('https://gnartiel.github.io/happy-new-year/image/letter.jpg'); /* Thêm hình nền */
-            background-size: cover; /* Đảm bảo hình nền phủ đầy màn hình */
-            background-position: center; /* Căn giữa hình nền */
+            font-family: 'Dancing Script', cursive; 
+            background-image: url('https://gnartiel.github.io/happy-new-year/image/letter.jpg'); 
+            background-size: cover; 
+            background-position: center;
             padding: 20px;
             margin: 0;
         }
@@ -28,14 +28,14 @@
         }
 
         .letter-header {
-            font-size: 2em; /* Độ lớn tiêu đề */
+            font-size: 2em; 
             font-weight: bold;
             text-align: center;
             margin-bottom: 20px;
         }
 
         .letter-body {
-            font-size: 1.5em; /* Độ lớn nội dung bức thư */
+            font-size: 1.5em;
             margin: 20px 0;
         }
 
@@ -61,7 +61,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const selectedNumber = urlParams.get('code');
 
-        const fileName = `https://gnartiel.github.io/happy-new-year/data/${selectedNumber}.txt`; // Đường dẫn tới tệp tin
+        const fileName = `https://gnartiel.github.io/happy-new-year/data/${selectedNumber}.txt`;
 
         async function readFileContent(filePath) {
             try {
@@ -81,7 +81,7 @@
                     <div class="signature">Trang</div>
                 `;
 
-                document.getElementById('content').innerHTML += contentHtml; // Sử dụng innerHTML để hiển thị HTML
+                document.getElementById('content').innerHTML += contentHtml;
             } catch (error) {
                 document.getElementById('content').innerText = error.message;
             }
