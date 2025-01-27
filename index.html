@@ -158,13 +158,13 @@
 
         codeSubmit.addEventListener('click', function () {
             const code = codeInput.value.trim().toLowerCase();
-            if (code === 'snake') {
+            if (code === 'snake' || code === '2024') { 
                 popup.style.display = 'none';
                 overlay.style.display = 'none';
 
                 const greetingButton = document.createElement('a');
                 greetingButton.textContent = 'Đôi lời gửi gắm';
-                greetingButton.href = 'html/greeting.html?code=snake';
+                greetingButton.href = `html/greeting.html?code=${code}`; 
                 greetingButton.id = 'greeting-button';
                 greetingButton.className = 'button';
                 document.getElementById('message').appendChild(greetingButton);
