@@ -58,6 +58,10 @@
     </div>
 
     <script>
+        const audio = new Audio('https://gnartiel.github.io/happy-new-year/music/greeting.mp3');
+        audio.play().catch(err => {
+            console.warn('Không thể phát nhạc tự động:', err);
+        });
         const urlParams = new URLSearchParams(window.location.search);
         const selectedNumber = urlParams.get('code');
 
